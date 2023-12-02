@@ -19,6 +19,11 @@ const db = mysql.createConnection({
     port: '3306',        //XAMPP 3306
 });
 
+db.connect((err) =>  {
+    if(err) return console.log(err.message);
+    console.log("connected to local mysql db")
+});
+
 
 //routes
 app.get("/", (req, res) => {
@@ -92,10 +97,24 @@ app.post("/login", (req, res) => {
     });
 });
 
+// browse route 
+app.post("/browse", (req, res) => {
+    const username = req.body.username;
 
-
-
-
+    const sql = 'SELECT username FROM users WHERE username = ?';
+    db.query(sql, [username], (error, results) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        } else if (results.length > 0) {
+            // User found in the database, render the browse_cards template
+            res.render("browse", { username });
+        } else {
+            // Username not found
+            res.status(404).send('Username not found. Please check your username or sign up.');
+        }
+    });
+});
 
 
 
