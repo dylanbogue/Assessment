@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -58,13 +56,14 @@ app.post("/signup", async (req, res) => {
                 res.status(500).send('Internal Server Error');
             } else {
                 res.status(201).send('User created successfully!');
-            }
+            } 
         });
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 
 
@@ -98,23 +97,33 @@ app.post("/login", (req, res) => {
 });
 
 // browse route 
-app.post("/browse", (req, res) => {
+ app.post("/browse", (req, res) => {
     const username = req.body.username;
 
-    const sql = 'SELECT username FROM users WHERE username = ?';
-    db.query(sql, [username], (error, results) => {
-        if (error) {
-            console.error(error);
-            res.status(500).send('Internal Server Error');
-        } else if (results.length > 0) {
+    const sql = `SELECT * FROM users WHERE username = '${username}';`;
+    db.query(sql, (error, results) => {
+        if (error) throw error;
+            // console.error(error);
+            //res.status(500).send('Internal Server Error');
+            //} else missing below
+          else if (results.length > 0) {
             // User found in the database, render the browse_cards template
-            res.render("browse", { username });
+            res.render("user_cards", { username: `Welcome, these are your cards  ${username}` });   
+           
+
         } else {
             // Username not found
-            res.status(404).send('Username not found. Please check your username or sign up.');
+            
+            res.redirect(`/signup?invalidUsername=${username}`);            
         }
     });
 });
+
+
+
+    
+
+
 
 
 
@@ -126,4 +135,4 @@ app.listen(process.env.PORT || 3000, () => {
     
     console.log(" Server is listening on localhost:3000/ ");
 
-})
+});

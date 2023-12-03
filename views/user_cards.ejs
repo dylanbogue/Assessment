@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<!-- user_cards.ejs -->
+<html>
+<head>
+    <title>User Cards</title>
+</head>
+<body>
+    <h1><%= username %>!</h1>
+    
+
+//SELECT u.username, c.img_low
+FROM users u
+LEFT JOIN card c ON u.user_id = c.user_id
+WHERE u.username = 'thisistest1';
+
+
+
+</body>
+</html>
