@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <!-- user_cards.ejs -->
 <html>
 <head>
@@ -7,14 +6,16 @@
 </head>
 <body>
     <h1><%= username %>!</h1>
-    
 
-//SELECT u.username, c.img_low
-FROM users u
-LEFT JOIN card c ON u.user_id = c.user_id
-WHERE u.username = 'thisistest1';
-
-
-
+    <% if (results && results.length > 0) { %>
+        <h2>Your Cards:</h2>
+        <% results.forEach(card => { %>
+            <img src="<%= card.img_low %>" alt="Card Image">
+        <% }); %>
+    <% } else { %>
+        <p>No cards found for this user.</p>
+    <% } %>
 </body>
 </html>
+
+

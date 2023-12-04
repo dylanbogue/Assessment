@@ -105,10 +105,9 @@ app.post("/login", (req, res) => {
         if (error) throw error;
             // console.error(error);
             //res.status(500).send('Internal Server Error');
-            //} else missing below
+            //} 
           else if (results.length > 0) {
             // User found in the database, render the browse_cards template
-            res.render("user_cards", { username: `Welcome, these are your cards  ${username}` });   
            
 
         } else {
@@ -119,7 +118,25 @@ app.post("/login", (req, res) => {
     });
 });
 
+//all new 
 
+app.get("/user_cards", (req, res) => {
+    const username = req.query.username; // Change to req.query to get the username from the query string
+
+    const cardSql = `SELECT u.username, c.img_low
+                    FROM users u
+                    LEFT JOIN card c ON u.user_id = c.user_id
+                    WHERE u.username = '${username}';`;
+
+    db.query(cardSql, (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.render('user_cards', { results });
+        }
+    });
+});
 
     
 
