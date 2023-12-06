@@ -6,12 +6,14 @@
 </head>
 <body>
     <h1><%= username %>!</h1>
+    <button onclick="window.location.href='add_card?username=<%=username%>'">Add Card</button>
 
     <% if (results && results.length > 0) { %>
         <h2>Your Cards:</h2>
-        <% results.forEach(card => { %>
-            <img src="<%= card.img_low %>" alt="Card Image">
-        <% }); %>
+        <% for(var i = 0; i < results.length; i++) { %>
+            <%= console.log(results[i].name); %>
+            <img src="<%= results[i].img_low %>" alt="Card Image">
+        <% }; %>
     <% } else { %>
         <p>No cards found for this user.</p>
     <% } %>
