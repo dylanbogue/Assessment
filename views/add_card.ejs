@@ -1,0 +1,81 @@
+<!-- views/login.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Card</title>
+</head>
+<style>
+    body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3dd9ce;
+            padding: 1em;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        button {
+            margin-left: 20px;
+            background-color: #3b3d3d;
+            color:#3dd9ce; 
+            padding:20px 32px;
+            font-size: larger;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        footer {
+            background-color: #3b3d3d;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            background-color: #000000;
+            padding: 5em;
+            display: flex;
+            align-items: center;
+            color: goldenrod;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        h1 {
+            font-size: 45px;
+        }
+</style>
+<body>
+
+    <div class="header"></div>
+    <header> 
+        
+        
+        <h1><b>TradetheCart</b></h1>
+        <nav>
+            <button onclick="window.location.href='/'">Home</button>
+        </nav>
+    
+    </header>
+</div>
+
+    <h2>Add Card to <%= username %></h2>
+
+    <form action="/add_card" method="post">
+        <label for="username">Card Name:</label>
+        <input type="text" name="cardName"><br>
+
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

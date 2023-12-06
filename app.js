@@ -115,11 +115,22 @@ app.get("/user_cards", (req, res) => {
 });
 
 app.get("/add_card", (req, res) => {
-    
+    const username = req.query.username
+    res.render('add_card', {username: username});
 })
 
+app.post("/add_card", (req, res) => {
+    const cardName = req.body.cardName; // Change to req.query to get the username from the query string
 
-
+    // const sql = "INSERT INTO `card`(`card_id`, `name`, `set_name`, `img_low`, `img_high`, `hp`, `stage`, `attack`, `user_id`) VALUES (?,?,?,?,?,?,?,?,?)";
+    const sql = "INSERT INTO `card` (`card_id`, `name`, `set_name`, `img_low`, `img_high`, `hp`, `stage`, `attack`, `user_id`) VALUES (NULL, 'Dark Charizard', 'Team Rocket', 'https://assets.tcgdex.net/en/base/base5/21/low.webp', 'https://assets.tcgdex.net/en/base/base5/21/high.webp', '80', 'Stage 2', 'Seemingly possessed, it spews fire like a volcano, trying to burn all it sees.  ', '2');"
+    db.query(sql, [], (error, results) => {
+        if(error) {
+            return res.status(401).send('Failure Adding Card');
+        }
+        res.redirect(`user_cards?username=${username}`);
+    })
+});
 
 
 
