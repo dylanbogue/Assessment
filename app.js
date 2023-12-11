@@ -35,6 +35,9 @@ app.get("/browse", (req, res) => {
 app.get("/signup", (req, res) => {
     res.render("signup");
 });
+app.get("/hot_now", (req, res) => {
+    res.render("hot_now");
+});
 
 
 app.post("/signup", async (req, res) => {

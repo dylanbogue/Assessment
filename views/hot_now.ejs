@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradetheCart</title>
+    <title>Document</title>
+
+    <!-- Include Picnic CSS -->
+   
+    
     <style>
         body {
             margin: 0;
@@ -19,7 +22,6 @@
             justify-content: space-between;
             align-items: center;
             font-family: Georgia, 'Times New Roman', Times, serif;
-
         }
 
         nav {
@@ -27,17 +29,18 @@
         }
 
         button {
-            margin-left: 20px;
             background-color: #3b3d3d;
             color: #3dd9ce;
             padding: 20px 32px;
             font-size: larger;
             font-family: Georgia, 'Times New Roman', Times, serif;
+            border: none;
+            cursor: pointer;
+            margin-left: 20px;
         }
 
         footer {
-            background-color: #000000;
-
+            background-color: #3b3d3d;
             padding: 1em;
             text-align: center;
         }
@@ -57,15 +60,7 @@
 
         img {
             max-width: 30%;
-            /* Ensure the image doesn't exceed its container */
             margin-left: 20px;
-
-            border-radius: 50%;
-            /* Make it a circle */
-            border-color: azure;
-            padding-bottom: 9;
-            /* 100% height (ratio 1) */
-            /* Add some margin to the left of the image */
         }
 
         h1 {
@@ -77,38 +72,39 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="header">
-        <header>
-            <h1><b>TradetheCart</b></h1>
-            <nav>
+
+<div class="header">
+    <header> 
+        <h1><b>TradetheCart</b></h1>
+        <nav>
+            <div class="button">
                 <button onclick="window.location.href='login'">Login</button>
                 <button onclick="window.location.href='signup'">Sign Up</button>
-                <button onclick="window.location.href='hot_now'">Hot Now</button>
-            </nav>
-        </header>
-    </div>
-
-
-    <div class="main">
-        <main>
-            <div>
-                <h2>Join Us to Effortlessly Keep Tabs on Your Pokémon Card Collection</h2>
+                <button onclick="window.location.href='/'">Home</button>
             </div>
-            <img src="https://i.pinimg.com/736x/6b/b2/c7/6bb2c729950aedb885c3cb9957251154.jpg" alt="Pokemon Dragon">
-        </main>
-    </div>
+        </nav>
+    </header>
+</div>
 
-    <div class="footer">
-        <footer>
-            <p>My website.</p>
-        </footer>
-    </div>
+<h1>What cards are hot now...</h1>
 
-    <script>
-        // You can include JavaScript code here if needed
-    </script>
+<div class="flex two">
+    <div>
+        <article class="card">
+            <img src="https://assets.tcgdex.net/en/neo/neo2/36/low.webp">
+            <h3>MNEED TO EDIT</h3>
+            <button class="button">Like</button>
+        </article>
+    </div>
+    <div>
+        <article class="card">
+            <img src="https://assets.tcgdex.net/en/neo/neo2/33/low.webp">
+            <h3>EDIT</h3>
+            <button class="button">Like</button>
+        </article>
+    </div>
+</div>
+
 </body>
-
 </html>
