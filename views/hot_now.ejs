@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- Include Picnic CSS -->
-   
-    
     <style>
         body {
             margin: 0;
@@ -22,6 +19,7 @@
             justify-content: space-between;
             align-items: center;
             font-family: Georgia, 'Times New Roman', Times, serif;
+
         }
 
         nav {
@@ -29,18 +27,17 @@
         }
 
         button {
+            margin-left: 20px;
             background-color: #3b3d3d;
             color: #3dd9ce;
             padding: 20px 32px;
             font-size: larger;
             font-family: Georgia, 'Times New Roman', Times, serif;
-            border: none;
-            cursor: pointer;
-            margin-left: 20px;
         }
 
         footer {
-            background-color: #3b3d3d;
+            background-color: #000000;
+
             padding: 1em;
             text-align: center;
         }
@@ -60,7 +57,10 @@
 
         img {
             max-width: 30%;
+            /* Ensure the image doesn't exceed its container */
             margin-left: 20px;
+
+        
         }
 
         h1 {
@@ -70,22 +70,21 @@
         h2 {
             font-size: xx-large;
         }
-    </style>
+</style>
 </head>
 <body>
 
 <div class="header">
     <header> 
-        <h1><b>TradetheCart</b></h1>
-        <nav>
-            <div class="button">
-                <button onclick="window.location.href='login'">Login</button>
-                <button onclick="window.location.href='signup'">Sign Up</button>
-                <button onclick="window.location.href='/'">Home</button>
-            </div>
-        </nav>
-    </header>
-</div>
+                <h1><b>TradetheCart</b></h1>
+                <nav>
+                    <button onclick="window.location.href='login'">Login</button>
+                    <button onclick="window.location.href='signup'">Sign Up</button>
+                    <button onclick="window.location.href='/'">Home</button>
+                </nav>
+            </header>
+        </div>    
+    
 
 <h1>What cards are hot now...</h1>
 
@@ -94,17 +93,38 @@
         <article class="card">
             <img src="https://assets.tcgdex.net/en/neo/neo2/36/low.webp">
             <h3>MNEED TO EDIT</h3>
-            <button class="button">Like</button>
+            <button class="button" onclick="like('card1')">Like</button>
+            <p id="likeCount_card1">8 likes</p>
         </article>
     </div>
     <div>
         <article class="card">
             <img src="https://assets.tcgdex.net/en/neo/neo2/33/low.webp">
             <h3>EDIT</h3>
-            <button class="button">Like</button>
+            <button class="button" onclick="like('card2')">Like</button>
+            <p id="likeCount_card2">0 likes</p>
         </article>
     </div>
 </div>
+
+<script>
+    // JavaScript code for handling likes
+    let likeCounts = {
+        card1: 8,
+        card2: 0,
+        // Add more cards as needed
+    };
+
+    function like(cardId) {
+        likeCounts[cardId]++;
+        updateLikeCount(cardId);
+    }
+
+    function updateLikeCount(cardId) {
+        const likeCountElement = document.getElementById(`likeCount_${cardId}`);
+        likeCountElement.textContent = `${likeCounts[cardId]} like${likeCounts[cardId] !== 1 ? 's' : ''}`;
+    }
+</script>
 
 </body>
 </html>
