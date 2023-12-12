@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +61,7 @@
             /* Ensure the image doesn't exceed its container */
             margin-left: 20px;
 
-        
+
         }
 
         h1 {
@@ -70,61 +71,111 @@
         h2 {
             font-size: xx-large;
         }
-</style>
+
+        /* Updated styles for horizontal layout */
+        .flex.four {
+            display: flex;
+        }
+
+        .flex.four>div {
+            flex: 1;
+            margin: 0 10px;
+            /* Adjust margin as needed */
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="header">
-    <header> 
-                <h1><b>TradetheCart</b></h1>
-                <nav>
-                    <button onclick="window.location.href='login'">Login</button>
-                    <button onclick="window.location.href='signup'">Sign Up</button>
-                    <button onclick="window.location.href='/'">Home</button>
-                </nav>
-            </header>
-        </div>    
-    
+    <div class="header">
+        <header>
+            <h1><b>TradetheCart</b></h1>
+            <nav>
+                <!-- Update the like button onclick attribute -->
+                <button class="button" onclick="likeAndEmail('Tyranitar')">Like</button>
+                <button class="button" onclick="likeAndEmail('Blissey')">Like</button>
+                <button class="button" onclick="likeAndEmail('Ampharos')">Like</button>
 
-<h1>What cards are hot now...</h1>
-
-<div class="flex two">
-    <div>
-        <article class="card">
-            <img src="https://assets.tcgdex.net/en/neo/neo2/36/low.webp">
-            <h3>MNEED TO EDIT</h3>
-            <button class="button" onclick="like('card1')">Like</button>
-            <p id="likeCount_card1">8 likes</p>
-        </article>
+            </nav>
+        </header>
     </div>
-    <div>
-        <article class="card">
-            <img src="https://assets.tcgdex.net/en/neo/neo2/33/low.webp">
-            <h3>EDIT</h3>
-            <button class="button" onclick="like('card2')">Like</button>
-            <p id="likeCount_card2">0 likes</p>
-        </article>
+
+
+    <h3>Trending Now..</h3>
+
+    <div class="flex four">
+        <div>
+            <article class="card">
+                <img src="https://assets.tcgdex.net/en/neo/neo2/12/low.webp">
+                <h3>Tyranitar</h3>
+                <button class="button" onclick="email('Tyranitar')">Emial</button>
+                <button class="button" onclick="like('card1')">Like</button>
+                <p id="likeCount_card1">8 likes</p>
+            </article>
+        </div>
+        <div>
+            <article class="card">
+                <img src="https://assets.tcgdex.net/en/neo/neo3/2/low.webp">
+                <h3>Blissey</h3>
+                <button class="button" onclick="like('card2')">Like</button>
+                <p id="likeCount_card2">0 likes</p>
+            </article>
+        </div>
+        <div>
+            <article class="card">
+                <img src="https://assets.tcgdex.net/en/neo/neo3/1/low.webp">
+                <h3>Ampharos</h3>
+                <button class="button" onclick="like('card3')">Like</button>
+                <p id="likeCount_card2">0 likes</p>
+            </article>
+        </div>
+
     </div>
-</div>
 
-<script>
-    // JavaScript code for handling likes
-    let likeCounts = {
-        card1: 8,
-        card2: 0,
-        // Add more cards as needed
-    };
+    <script>
 
-    function like(cardId) {
-        likeCounts[cardId]++;
-        updateLikeCount(cardId);
+
+    async function email(cardName) {
+        try {
+            const response = await fetch(`http://localhost:3000/get-email/${cardName}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                const email = data.email;
+                window.location.href = `mailto:${email}`;
+            } else {
+                console.error(data.error);
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    function updateLikeCount(cardId) {
-        const likeCountElement = document.getElementById(`likeCount_${cardId}`);
-        likeCountElement.textContent = `${likeCounts[cardId]} like${likeCounts[cardId] !== 1 ? 's' : ''}`;
-    }
-</script>
+
+
+
+
+        // JavaScript code for handling likes
+        let likeCounts = {
+            card1: 8,
+            card2: 0,
+            card3: 4,
+            // Add more cards as needed
+        };
+
+        function like(cardId) {
+            likeCounts[cardId]++;
+            updateLikeCount(cardId);
+        }
+
+        function updateLikeCount(cardId) {
+            const likeCountElement = document.getElementById(`likeCount_${cardId}`);
+            likeCountElement.textContent = `${likeCounts[cardId]} like${likeCounts[cardId] !== 1 ? 's' : ''}`;
+        }
+
+        
+    </script>
 
 </body>
+
 </html>

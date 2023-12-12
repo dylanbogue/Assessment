@@ -139,12 +139,7 @@ app.post("/add_card", (req, res) => {
 
 
 
-//server
-app.listen(process.env.PORT || 3000, () => {
-    
-    console.log(" Server is listening on localhost:3000/ ");
 
-});
 
 
 
@@ -166,4 +161,39 @@ app.post("/browse", (req, res) => {
             res.redirect(`/signup?invalidUsername=${username}`);            
         }
     });
+});
+
+
+//getemail
+
+app.get("/get-email/:cardName", (req, res) => {
+    const cardName = req.params.cardName;
+
+    const sql = `SELECT u.email
+                FROM users u
+                LEFT JOIN card c ON u.user_id = c.user_id
+                WHERE c.name = ?;`;
+
+    db.query(sql, [cardName], (err, results) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            if (results.length > 0) {
+                const userEmail = results[0].email;
+                res.send({ email: userEmail });
+            } else {
+                res.status(404).send({ error: 'Card not found or associated user has no email.' });
+            }
+        }
+    });
+});
+
+
+
+//server
+app.listen(process.env.PORT || 3000, () => {
+    
+    console.log(" Server is listening on localhost:3000/ ");
+
 });
