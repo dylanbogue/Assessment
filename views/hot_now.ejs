@@ -91,15 +91,13 @@
         <header>
             <h1><b>TradetheCart</b></h1>
             <nav>
-                <!-- Update the like button onclick attribute -->
-                <button class="button" onclick="likeAndEmail('Tyranitar')">Like</button>
-                <button class="button" onclick="likeAndEmail('Blissey')">Like</button>
-                <button class="button" onclick="likeAndEmail('Ampharos')">Like</button>
-
-            </nav>
+                
+                    <button onclick="window.location.href='/'">Home</button>
+                    <button onclick="window.location.href='login'">Login</button>
+                    <button onclick="window.location.href='signup'">Sign Up</button>
+                </nav>
         </header>
     </div>
-
 
     <h3>Trending Now..</h3>
 
@@ -108,7 +106,7 @@
             <article class="card">
                 <img src="https://assets.tcgdex.net/en/neo/neo2/12/low.webp">
                 <h3>Tyranitar</h3>
-                <button class="button" onclick="email('Tyranitar')">Emial</button>
+                <button class="button" onclick="email('Tyranitar')">Email</button>
                 <button class="button" onclick="like('card1')">Like</button>
                 <p id="likeCount_card1">8 likes</p>
             </article>
@@ -117,20 +115,31 @@
             <article class="card">
                 <img src="https://assets.tcgdex.net/en/neo/neo3/2/low.webp">
                 <h3>Blissey</h3>
+                <button class="button" onclick="email('Blissey')">Email</button>
                 <button class="button" onclick="like('card2')">Like</button>
-                <p id="likeCount_card2">0 likes</p>
+                <p id="likeCount_card2">2 likes</p>
             </article>
         </div>
         <div>
             <article class="card">
                 <img src="https://assets.tcgdex.net/en/neo/neo3/1/low.webp">
                 <h3>Ampharos</h3>
+                <button class="button" onclick="email('Ampharos')">Email</button>
                 <button class="button" onclick="like('card3')">Like</button>
-                <p id="likeCount_card2">0 likes</p>
+                <p id="likeCount_card3">0 likes</p>
             </article>
         </div>
-
+        <div>
+            <article class="card">
+                <img src="https://assets.tcgdex.net/en/base/base3/5/low.webp">
+                <h3>Gengar</h3>
+                <button class="button" onclick="email('Gengar')">Email</button>
+                <button class="button" onclick="like('card4')">Like</button>
+                <p id="likeCount_card4">1 likes</p>
+            </article>
+        </div>
     </div>
+    
 
     <script>
 
@@ -158,8 +167,9 @@
         // JavaScript code for handling likes
         let likeCounts = {
             card1: 8,
-            card2: 0,
-            card3: 4,
+            card2: 2,
+            card3: 0,
+            card4: 1,
             // Add more cards as needed
         };
 

@@ -1,14 +1,11 @@
-<!-- views/login.ejs -->
-
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Card</title>
 </head>
 <style>
-    body {
+     body {
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -20,7 +17,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         nav {
@@ -30,10 +27,10 @@
         button {
             margin-left: 20px;
             background-color: #3b3d3d;
-            color:#3dd9ce; 
-            padding:20px 32px;
+            color: #3dd9ce; 
+            padding: 20px 32px;
             font-size: larger;
-            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         footer {
@@ -48,34 +45,83 @@
             display: flex;
             align-items: center;
             color: goldenrod;
-            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         h1 {
             font-size: 45px;
         }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #3b3d3d;
+            color: #3dd9ce;
+            padding: 15px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
 </style>
 <body>
+    <div class="header">
+        <header>
+            <h1><b>TradetheCart</b></h1>
+            <nav>
+                <button onclick="window.location.href='/'">Home</button>
+                <button onclick="window.location.href='/user_cards?username=<%=username%>'">Back to Cards</button>
+            </nav>
+        </header>
+    </div>
+    <!-- Add this line to include the user_id in the form -->
+<input type="hidden" name="user_id" value="<%= user_id %>">
 
-    <div class="header"></div>
-    <header> 
-        
-        
-        <h1><b>TradetheCart</b></h1>
-        <nav>
-            <button onclick="window.location.href='/'">Home</button>
-        </nav>
-    
-    </header>
-</div>
 
-    <h2>Add Card to <%= username %></h2>
+    <main>
+        <h1>Add a Card</h1>
+        <form action="/add_card" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-    <form action="/add_card" method="post">
-        <label for="username">Card Name:</label>
-        <input type="text" name="cardName"><br>
+            <label for="set_name">Set Name:</label>
+            <input type="text" id="set_name" name="set_name" required>
 
-        <input type="submit" value="Add">
-    </form>
+            <label for="img_low">Image (Low):</label>
+            <input type="text" id="img_low" name="img_low" required>
+
+            <label for="img_high">Image (High):</label>
+            <input type="text" id="img_high" name="img_high" required>
+
+            <label for="hp">HP:</label>
+            <input type="number" id="hp" name="hp" required>
+
+            <label for="stage">Stage:</label>
+            <input type="text" id="stage" name="stage" required>
+
+            <label for="attack">Attack:</label>
+            <input type="text" id="attack" name="attack" required>
+
+            <!-- Assume user_id is passed from the user_cards page -->
+            <input type="hidden" name="user_id" value="<%= user_id %>">
+
+            <button type="submit">Add Card</button>
+        </form>
+    </main>
+
 </body>
 </html>

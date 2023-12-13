@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mysql = require('mysql2');
+const { name } = require("ejs");
 
 //middleware
 app.use(express.static(path.join(__dirname, './public')));
@@ -117,24 +118,55 @@ app.get("/user_cards", (req, res) => {
     });
 });
 
+
+
+
+
+// Add this route to render the add_card page
 app.get("/add_card", (req, res) => {
-    const username = req.query.username
-    res.render('add_card', {username: username});
-})
+    const username = req.query.username;
 
-app.post("/add_card", (req, res) => {
-    const cardName = req.body.cardName; // Change to req.query to get the username from the query string
+    // Fetch user_id based on the provided username
+    const getUserIdSql = 'SELECT user_id FROM users WHERE username = ?';
 
-    // const sql = "INSERT INTO `card`(`card_id`, `name`, `set_name`, `img_low`, `img_high`, `hp`, `stage`, `attack`, `user_id`) VALUES (?,?,?,?,?,?,?,?,?)";
-    const sql = "INSERT INTO `card` (`card_id`, `name`, `set_name`, `img_low`, `img_high`, `hp`, `stage`, `attack`, `user_id`) VALUES (NULL, 'Dark Charizard', 'Team Rocket', 'https://assets.tcgdex.net/en/base/base5/21/low.webp', 'https://assets.tcgdex.net/en/base/base5/21/high.webp', '80', 'Stage 2', 'Seemingly possessed, it spews fire like a volcano, trying to burn all it sees.  ', '2');"
-    db.query(sql, [], (error, results) => {
-        if(error) {
-            return res.status(401).send('Failure Adding Card');
+    db.query(getUserIdSql, [username], (error, results) => {
+        if (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        } else {
+            // Check if user exists
+            if (results.length === 0) {
+                res.status(404).send('User not found.');
+            } else {
+                const user_id = results[0].user_id;
+                res.render('add_card', { username: username, user_id: user_id });
+            }
         }
-        res.redirect(`user_cards?username=${username}`);
-    })
+    });
 });
 
+// Add this route to handle the form submission for adding a card
+app.post("/add_card", (req, res) => {
+    const { name, set_name, img_low, img_high, hp, stage, attack, user_id } = req.body;
+
+    const addCardSql = `
+        INSERT INTO card (name, set_name, img_low, img_high, hp, stage, attack, user_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    `;
+
+    db.query(
+        addCardSql,
+        [name, set_name, img_low, img_high, hp, stage, attack, user_id],
+        (error, results) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send('Internal Server Error');
+            } else {
+                res.redirect(`/user_cards?username=${req.body.username}`);
+            }
+        }
+    );
+});
 
 
 

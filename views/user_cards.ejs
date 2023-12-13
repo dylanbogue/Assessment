@@ -4,9 +4,77 @@
 <head>
     <title>User Cards</title>
 </head>
+<style>
+     body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3dd9ce;
+            padding: 1em;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        button {
+            margin-left: 20px;
+            background-color: #3b3d3d;
+            color:#3dd9ce; 
+            padding:20px 32px;
+            font-size: larger;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        footer {
+            background-color: #3b3d3d;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            background-color: #000000;
+            padding: 5em;
+            display: flex;
+            align-items: center;
+            color: goldenrod;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        h1 {
+            font-size: 45px;
+        }
+</style>
 <body>
-    <h1><%= username %>!</h1>
-    <button onclick="window.location.href='add_card?username=<%=username%>'">Add Card</button>
+    <div class="header">
+        <header>
+            <h1><b>TradetheCart</b></h1>
+            <nav>
+                
+                <button onclick="window.location.href='add_card?username=<%=username%>'">Add Card</button>
+                <button onclick="window.location.href='/'">Home</button>
+                <button onclick="window.location.href='/hot_now'">Hot Now</button>
+        
+                </nav>
+        </header>
+    </div>
+    
+<nav>
+
+
+<!-- Keep the existing code below this line -->
+
+
+    <h2>Hello <%=  username %> these are your cards!</h2>
+    
+    </nav>
 
     <% if (results && results.length > 0) { %>
         <h2>Your Cards:</h2>
@@ -17,7 +85,12 @@
     <% } else { %>
         <p>No cards found for this user.</p>
     <% } %>
+
+
+   
 </body>
 </html>
 
 
+
+  <!--NEED TO DELETE CARD BUTTON-->
