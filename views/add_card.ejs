@@ -91,30 +91,66 @@
     <!-- Add this line to include the user_id in the form -->
 <input type="hidden" name="user_id" value="<%= user_id %>">
 
-
     <main>
         <h1>Add a Card</h1>
         <form action="/add_card" method="post">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <!-- Use a dropdown for the name field with predefined options -->
+            <select id="name" name="name" required>
+                <option value="Dark Raticate">Dark Raticate</option>
+                <option value="Espeon">Espeon</option>
+                <option value="Unown">Unown</option>
+                <option value="Pikachu">Pikachu</option>
+            </select>
 
             <label for="set_name">Set Name:</label>
-            <input type="text" id="set_name" name="set_name" required>
+            <!-- Use a dropdown for the set_name field with predefined options -->
+            <select id="set_name" name="set_name" required>
+                <option value="Team Rocket">Team Rocket</option>
+                <option value="Neo Discovery">Neo Discovery</option>
+                <option value="Wizards Black Star Promos">Wizards Black Star Promos</option>
+            </select>
 
             <label for="img_low">Image (Low):</label>
-            <input type="text" id="img_low" name="img_low" required>
+            <!-- Use a dropdown for the img_low field with predefined options -->
+            <select id="img_low" name="img_low" required>
+                <option value="https://assets.tcgdex.net/en/base/base5/51/low.webp">https://assets.tcgdex.net/en/base/base5/51/low.webp</option>
+                <option value="https://assets.tcgdex.net/en/neo/neo2/1/low.webp">https://assets.tcgdex.net/en/neo/neo2/1/low.webp</option>
+                <option value="https://assets.tcgdex.net/en/base/basep/1/low.webp">https://assets.tcgdex.net/en/base/basep/1/low.webp</option>
+            </select>
 
             <label for="img_high">Image (High):</label>
-            <input type="text" id="img_high" name="img_high" required>
+            <!-- Use a dropdown for the img_high field with predefined options -->
+            <select id="img_high" name="img_high" required>
+                <option value="https://assets.tcgdex.net/en/base/base5/51/high.webp">https://assets.tcgdex.net/en/base/base5/51/high.webp</option>
+                <option value="https://assets.tcgdex.net/en/neo/neo2/1/high.webp">https://assets.tcgdex.net/en/neo/neo2/1/high.webp</option>
+                <option value="https://assets.tcgdex.net/en/base/basep/1/high.webp">https://assets.tcgdex.net/en/base/basep/1/high.webp</option>
+            </select>
 
             <label for="hp">HP:</label>
-            <input type="number" id="hp" name="hp" required>
+            <!-- Use a dropdown for the hp field with predefined options -->
+            <select id="hp" name="hp" required>
+                <option value="50">50</option>
+                <option value="80">80</option>
+                <option value="60">60</option>
+            </select>
 
             <label for="stage">Stage:</label>
-            <input type="text" id="stage" name="stage" required>
+            <!-- Use a dropdown for the stage field with predefined options -->
+            <select id="stage" name="stage" required>
+                <option value="Stage 1">Stage 1</option>
+                <option value="Stage 2">Stage 2</option>
+                <option value="Basic">Basic</option>
+            </select>
 
             <label for="attack">Attack:</label>
-            <input type="text" id="attack" name="attack" required>
+            <!-- Use a dropdown for the attack field with predefined options -->
+            <select id="attack" name="attack" required>
+                <option value="A Raticate's front teeth are incredibly powerful; it can destroy a two-story house with them in 5 minutes.">A Raticate's front teeth are incredibly powerful; it can destroy a two-story house with them in 5 minutes.</option>
+                <option value="Does 30 damage plus 10 more damage for each Energy card attached to the Defending Pokémon.">Does 30 damage plus 10 more damage for each Energy card attached to the Defending Pokémon.</option>
+                <option value="Whenever 1 of your Pokémon with Unown in its name uses its Hidden Power attack, that attack does 10 more damage for each damage counter on Unown. If you have more than 1 Unown in play, use only 1 for each attack.">Whenever 1 of your Pokémon with Unown in its name uses its Hidden Power attack, that attack does 10 more damage for each damage counter on Unown. If you have more than 1 Unown in play, use only 1 for each attack.</option>
+                <option value="When several of these Pokémon gather, their electricity could build and cause lightning storms.">When several of these Pokémon gather, their electricity could build and cause lightning storms.</option>
+            </select>
 
             <!-- Assume user_id is passed from the user_cards page -->
             <input type="hidden" name="user_id" value="<%= user_id %>">

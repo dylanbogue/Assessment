@@ -146,8 +146,10 @@ app.get("/add_card", (req, res) => {
 });
 
 // Add this route to handle the form submission for adding a card
+// Add this route to handle the form submission for adding a card
 app.post("/add_card", (req, res) => {
     const { name, set_name, img_low, img_high, hp, stage, attack, user_id } = req.body;
+    const username = req.query.username;
 
     const addCardSql = `
         INSERT INTO card (name, set_name, img_low, img_high, hp, stage, attack, user_id)
@@ -162,11 +164,13 @@ app.post("/add_card", (req, res) => {
                 console.error(error);
                 res.status(500).send('Internal Server Error');
             } else {
-                res.redirect(`/user_cards?username=${req.body.username}`);
+                // Redirect to user_cards with the correct username
+                res.send(`Card has been added successfully `);
             }
         }
     );
 });
+
 
 
 
