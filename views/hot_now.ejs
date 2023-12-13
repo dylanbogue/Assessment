@@ -139,6 +139,18 @@
             </article>
         </div>
     </div>
+
+
+
+    <label for="sort">Sort by HP:</label>
+<select id="sort" onchange="sortCards()">
+    <option value="asc">Lowest to Highest</option>
+    <option value="desc">Highest to Lowest</option>
+</select>
+
+    
+
+
     
 
     <script>
@@ -184,6 +196,53 @@
         }
 
         
+        async function fetchAllCards() {
+        try {
+            const response = await fetch('/get-all-cards'); // Adjust the endpoint if needed
+            const data = await response.json();
+
+            if (response.ok) {
+                return data;
+            } else {
+                console.error(data.error);
+                return [];
+            }
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+
+    async function renderCards(cards) {
+        const cardContainer = document.getElementById('cardContainer');
+        cardContainer.innerHTML = '';
+
+        cards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.innerHTML = `
+                <article class="card">
+                    <img src="${card.img_low}">
+                    <h3>${card.name}</h3>
+                    <p>HP: ${card.hp}</p>
+                </article>
+            `;
+            cardContainer.appendChild(cardElement);
+        });
+    }
+
+    async function sortCards() {
+        const sortSelect = document.getElementById('sort');
+        const sortOrder = sortSelect.value;
+
+        const cards = await fetchAllCards();
+
+        cards.sort((a, b) => sortOrder === 'asc' ? a.hp - b.hp : b.hp - a.hp);
+        renderCards(cards);
+    }
+
+    // Fetch and render cards initially
+    fetchAllCards().then(cards => renderCards(cards));
+
     </script>
 
 </body>

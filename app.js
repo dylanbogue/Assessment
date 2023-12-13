@@ -226,6 +226,26 @@ app.get("/get-email/:cardName", (req, res) => {
 });
 
 
+// Add this route to handle card deletion
+app.delete("/delete-card/:cardName", async (req, res) => {
+    const cardName = req.params.cardName;
+
+    try {
+        const sql = 'DELETE FROM card WHERE name = ?';
+        db.query(sql, [cardName], (error, results) => {
+            if (error) {
+                console.error(error);
+                res.status(500).send('Internal Server Error');
+            } else {
+                res.status(200).send('Card deleted successfully!');
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 //server
 app.listen(process.env.PORT || 3000, () => {

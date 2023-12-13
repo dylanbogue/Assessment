@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html>
@@ -5,92 +7,122 @@
     <title>User Cards</title>
 </head>
 <style>
-     body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-        header {
-            background-color: #3dd9ce;
-            padding: 1em;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    header {
+        background-color: #3dd9ce;
+        padding: 1em;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        nav {
-            display: flex;
-        }
+    nav {
+        display: flex;
+    }
 
-        button {
-            margin-left: 20px;
-            background-color: #3b3d3d;
-            color:#3dd9ce; 
-            padding:20px 32px;
-            font-size: larger;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    button {
+        margin-left: 20px;
+        background-color: #3b3d3d;
+        color: #3dd9ce;
+        padding: 20px 32px;
+        font-size: larger;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        footer {
-            background-color: #3b3d3d;
-            padding: 1em;
-            text-align: center;
-        }
+    footer {
+        background-color: #3b3d3d;
+        padding: 1em;
+        text-align: center;
+    }
 
-        main {
-            background-color: #000000;
-            padding: 5em;
-            display: flex;
-            align-items: center;
-            color: goldenrod;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    main {
+        background-color: #000000;
+        padding: 5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: goldenrod;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        h1 {
-            font-size: 45px;
-        }
+    h1 {
+        font-size: 45px;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .card {
+        margin: 10px;
+    }
+
+    .card img {
+        max-width: 100%;
+        height: auto;
+    }
 </style>
 <body>
     <div class="header">
         <header>
             <h1><b>TradetheCart</b></h1>
             <nav>
-                
                 <button onclick="window.location.href='add_card?username=<%=username%>'">Add Card</button>
                 <button onclick="window.location.href='/'">Home</button>
                 <button onclick="window.location.href='/hot_now'">Hot Now</button>
-        
-                </nav>
+            </nav>
         </header>
     </div>
-    
-<nav>
 
-
-<!-- Keep the existing code below this line -->
-
-
-    <h2>Hello <%=  username %> these are your cards!</h2>
-    
+    <nav>
+        <h2>Hello <%= username %> these are your cards!</h2>
     </nav>
 
     <% if (results && results.length > 0) { %>
-        <h2>Your Cards:</h2>
-        <% for(var i = 0; i < results.length; i++) { %>
-            <%= console.log(results[i].name); %>
-            <img src="<%= results[i].img_low %>" alt="Card Image">
-        <% }; %>
+        <div class="cards-container">
+            <% for(var i = 0; i < results.length; i++) { %>
+                <div class="card">
+                    <img src="<%= results[i].img_low %>" alt="Card Image">
+                    <h3><%= results[i].name %></h3>
+                </div>
+            <% }; %>
+        </div>
     <% } else { %>
         <p>No cards found for this user.</p>
     <% } %>
 
+    <!-- Add a search input field -->
+    <label for="deleteCard">Enter Card Name to Delete:</label>
+    <input type="text" id="deleteCard" placeholder="Card Name">
+    <button onclick="deleteCard()">Delete Card</button>
 
-   
+    <script>
+        async function deleteCard() {
+            const cardName = document.getElementById('deleteCard').value;
+
+            try {
+                const response = await fetch(`/delete-card/${cardName}`, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    // Reload the page after successful deletion
+                    window.location.reload();
+                } else {
+                    console.error('Error deleting card');
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    </script>
 </body>
 </html>
-
-
-
-  <!--NEED TO DELETE CARD BUTTON-->
