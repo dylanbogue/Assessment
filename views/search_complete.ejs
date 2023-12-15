@@ -57,7 +57,6 @@
             /* Ensure the image doesn't exceed its container */
             margin-left: 20px;
 
-            border-radius: 50%;
             /* Make it a circle */
             border-color: azure;
             padding-bottom: 9;
@@ -114,9 +113,9 @@
         <header>
             <h1><b>TradetheCart</b></h1>
             <nav>
+                <button onclick="window.location.href='/'">Home</button>
                 <button onclick="window.location.href='login'">Login</button>
                 <button onclick="window.location.href='signup'">Sign Up</button>
-                <button onclick="window.location.href='search'">Search</button>
             </nav>
         </header>
     </div>
@@ -127,17 +126,21 @@
             <span id="home-left">
                 <h2>Join Us to Effortlessly Keep Tabs on Your Pokémon Card Collection</h2>
                 <br>
-                <h2>Current Users:</h2>
+                <h2>Users with <% cardName %>:</h2>
                 <div id="home-users-div">
                     <% for( let i=0; i < users.length; i++ ) { %>
                         <a href="view_user_cards?username=<%= users[i].username %>">
                             <%= users[i].username %>
                         </a>
                         <% } %>
+                    <% if (users.length == 0) { %>
+                     No Users with this card!!!
+                    <% } %>
                 </div>
+
             </span>
 
-            <img src="https://i.pinimg.com/736x/6b/b2/c7/6bb2c729950aedb885c3cb9957251154.jpg" alt="Pokemon Dragon">
+            <img src="<%=imgSrc%>" alt="Pokemon Dragon">
         </div>
     </div>
 </body>

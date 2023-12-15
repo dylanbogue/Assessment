@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,66 +10,122 @@
 </head>
 <style>
     body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-        header {
-            background-color: #3dd9ce;
-            padding: 1em;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    header {
+        background-color: #3dd9ce;
+        padding: 1em;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        nav {
-            display: flex;
-        }
+    nav {
+        display: flex;
+    }
 
-        button {
-            margin-left: 20px;
-            background-color: #3b3d3d;
-            color:#3dd9ce; 
-            padding:20px 32px;
-            font-size: larger;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    button {
+        margin-left: 20px;
+        background-color: #3b3d3d;
+        color: #3dd9ce;
+        padding: 20px 32px;
+        font-size: larger;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        footer {
-            background-color: #3b3d3d;
-            padding: 1em;
-            text-align: center;
-        }
+    footer {
+        background-color: #3b3d3d;
+        padding: 1em;
+        text-align: center;
+    }
 
-        main {
-            background-color: #000000;
-            padding: 5em;
-            display: flex;
-            align-items: center;
-            color: goldenrod;
-            font-family:Georgia, 'Times New Roman', Times, serif;
-        }
+    main {
+        background-color: #000000;
+        padding: 5em;
+        display: flex;
+        align-items: center;
+        color: goldenrod;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-        h1 {
-            font-size: 45px;
-        }
+    h1 {
+        font-size: 45px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    /* Form Styling */
+    form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* Ensures padding doesn't affect overall width */
+    }
+
+    input[type="submit"] {
+        background-color: #5c6bc0;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #3f51b5;
+    }
+
+    /* Link Styling */
+    a {
+        color: #3f51b5;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
 </style>
+
 <body>
 
     <div class="header"></div>
-    <header> 
-        
-        
+    <header>
+
+
         <h1><b>TradetheCart</b></h1>
         <nav>
             <button onclick="window.location.href='/'">Home</button>
             <button onclick="window.location.href='signup'">Sign Up</button>
         </nav>
-    
+
     </header>
-</div>
+    </div>
 
     <h2>User Login</h2>
 
@@ -85,4 +142,5 @@
     <p>Don't have an account? <a href="/signup">Signup here</a>.</p>
 
 </body>
+
 </html>

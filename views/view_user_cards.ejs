@@ -1,9 +1,10 @@
+
+
 <!DOCTYPE html>
 
 <html>
-
 <head>
-    <title>Add Card</title>
+    <title>User Cards</title>
 </head>
 <style>
     body {
@@ -44,6 +45,7 @@
         background-color: #000000;
         padding: 5em;
         display: flex;
+        justify-content: center;
         align-items: center;
         color: goldenrod;
         font-family: Georgia, 'Times New Roman', Times, serif;
@@ -53,57 +55,49 @@
         font-size: 45px;
     }
 
-    .form {
+    .cards-container {
         display: flex;
-        flex-direction: column;
-        width: 50%;
-        margin: auto;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 
-    label {
-        margin-bottom: 10px;
-        font-size: 18px;
+    .card {
+        margin: 10px;
     }
 
-    input {
-        padding: 10px;
-        margin-bottom: 20px;
-        font-size: 16px;
-    }
-
-    button[type="submit"] {
-        background-color: #3b3d3d;
-        color: #3dd9ce;
-        padding: 15px 20px;
-        font-size: 18px;
-        cursor: pointer;
+    .card img {
+        max-width: 100%;
+        height: auto;
     }
 </style>
-
 <body>
     <div class="header">
         <header>
             <h1><b>TradetheCart</b></h1>
             <nav>
                 <button onclick="window.location.href='/'">Home</button>
-                <button onclick="window.location.href='/user_cards?username=<%=username%>'">Back to Cards</button>
+                <button onclick="window.location.href='/hot_now'">Hot Now</button>
             </nav>
         </header>
     </div>
-    <!-- Add this line to include the user_id in the form -->
-    <input type="hidden" name="user_id" value="<%= user_id %>">
 
-    <main>
-        <h1>Add a Card</h1>
+    <nav>
+        <h2>Viewing Cards For: <%= username %></h2>
+        <button onclick="window.location.href='view_user_cards_hp?username=<%=username%>'">Filter By Hp</button>
+    </nav>
 
-        <form class="form" method="post">
-            <label for="name">Pokemon Name to Add:</label>
-            <input name="name" type="text">
+    <% if (results && results.length > 0) { %>
+        <div class="cards-container">
+            <% for(var i = 0; i < results.length; i++) { %>
+                <div class="card">
+                    <img src="<%= results[i].img_low %>" alt="Card Image">
+                    <h3><%= results[i].name %></h3>
+                </div>
+            <% }; %>
+        </div>
+    <% } else { %>
+        <p>No cards found for this user.</p>
+    <% } %>
 
-            <input type="hidden" name="user_id" value="<%= user_id %>">
-            <button>Add Card</button>
-        </form>
-    </main>
 </body>
-
 </html>

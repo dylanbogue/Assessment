@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Add Card</title>
+    <title>Search Card Owners</title>
 </head>
 <style>
     body {
@@ -86,22 +86,18 @@
             <h1><b>TradetheCart</b></h1>
             <nav>
                 <button onclick="window.location.href='/'">Home</button>
-                <button onclick="window.location.href='/user_cards?username=<%=username%>'">Back to Cards</button>
             </nav>
         </header>
     </div>
-    <!-- Add this line to include the user_id in the form -->
-    <input type="hidden" name="user_id" value="<%= user_id %>">
 
     <main>
-        <h1>Add a Card</h1>
+        <h1>Search for Card Owners</h1>
 
         <form class="form" method="post">
-            <label for="name">Pokemon Name to Add:</label>
+            <label for="name">Pokemon Name to Search:</label>
             <input name="name" type="text">
 
-            <input type="hidden" name="user_id" value="<%= user_id %>">
-            <button>Add Card</button>
+            <button>Search Card</button>
         </form>
     </main>
 </body>
